@@ -2,13 +2,10 @@
 #   https://raw.githubusercontent.com/BeanGreen247/ArchLinux-KDE-Plasma-setup-script/main/setupArchLinux.sh
 #
 #   Please make sure to enable multilib repository before running this script
+#       https://wiki.archlinux.org/title/official_repositories#Enabling_multilib
 #   
-#   https://wiki.archlinux.org/title/official_repositories#Enabling_multilib
-#   
-#   sudo pacman -Syyuu
-#
-#   make sure to run this command first
-#       sudo pacman -S wget
+#   run this command 
+#       sudo pacman -Syyuu wget
 #
 #   after it finishes make sure to reboot before running the script and after running it
 #
