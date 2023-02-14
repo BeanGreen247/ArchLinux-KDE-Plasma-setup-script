@@ -5,7 +5,7 @@ A script that automates the etire process of setting up the full KDE plasma desk
 
 * Please make sure to enable multilib repository before running this script
   * https://wiki.archlinux.org/title/official_repositories#Enabling_multilib
-* run this command sudo pacman -Syyuu wget
+* run this command `sudo pacman -Syyuu wget`
 * after it finishes make sure to reboot before running the script and after running it
 * DO NOT RUN AS SUDO/ROOT
 
