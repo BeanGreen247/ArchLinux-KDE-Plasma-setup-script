@@ -29,7 +29,7 @@ VARS
   * intel - to install INTEL open source drivers
 
 ### Some more script information
-There are some sections where user input is expected so please make sure to read the prompts and when promped please be ready to use you accounts details to procedd.
+There are some sections where user input is expected so please make sure to read the prompts and when promped please be ready to use you accounts details to proceed.
 
 ### Troubleshooting
 In case of any problems you could try rerunning the script more times just to be sure all got applied. If an error appears make sure to raise an Issue https://github.com/BeanGreen247/ArchLinux-KDE-Plasma-setup-script/issues with a lot of detail so that we can minize the amount of time required to fix issues.
