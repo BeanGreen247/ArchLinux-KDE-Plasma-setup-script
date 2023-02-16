@@ -18,6 +18,7 @@ function main {
     pass="test"
     username="test"
     gpudriver="amd"
+    zramsize=32768 #check Setting up zram
     ...some more code down there
 ```
 VARS
@@ -27,6 +28,26 @@ VARS
   * amd - to install AMD open source drivers
   * nvidia - to install proprietary NVIDIA drivers
   * intel - to install INTEL open source drivers
+* zramsize - the size of zram in MB
+
+### zram
+In this section of the script we set up zram to be used alongside swap and its size is defined by the amount in MB set up in the VARS section of the script...
+```bash
+echo -e "\e[1;31m[Setting up zram...]\e[1;0m\n"
+echo $pass | sudo -S echo '# This config file enables a /dev/zram0 device with the default settings:' | sudo tee /usr/lib/systemd/zram-generator.conf
+echo $pass | sudo -S echo '# - size - same as available RAM or 32GB, whichever is less' | sudo tee -a /usr/lib/systemd/zram-generator.conf
+echo $pass | sudo -S echo '#        - if your system/VM has 16GB RAM then change it from 32768 to 16384' | sudo tee -a /usr/lib/systemd/zram-generator.conf
+echo $pass | sudo -S echo '# - compression - most likely lzo-rle' | sudo tee -a /usr/lib/systemd/zram-generator.conf
+echo $pass | sudo -S echo '# To disable, uninstall zram-generator-defaults or create empty' | sudo tee -a /usr/lib/systemd/zram-generator.conf
+echo $pass | sudo -S echo '# /etc/systemd/zram-generator.conf file.' | sudo tee -a /usr/lib/systemd/zram-generator.conf
+echo $pass | sudo -S echo '[zram0]' | sudo tee -a /usr/lib/systemd/zram-generator.conf
+echo $pass | sudo -S echo 'zram-size = min(ram, '$zramsize')' | sudo tee -a /usr/lib/systemd/zram-generator.conf
+echo $pass | sudo -S systemctl daemon-reload
+echo $pass | sudo -S systemctl start /dev/zram0
+echo $pass | sudo -S zramctl
+echo -e "Setting up zram...\e[1;32m[DONE]\e[1;0m"
+```
+You can check if it got applied by running `zramctl` in the terminal.
 
 ### Some more script information
 There are some sections where user input is expected so please make sure to read the prompts and when promped please be ready to use you accounts details to proceed.
