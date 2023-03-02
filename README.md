@@ -65,6 +65,11 @@ to check run `cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor`
 
 If it says `performace` one or multiple times, that means it worked.
 
+### pacman.conf
+Is used to keep system stable and updates minimal.
+
+[pacman.conf](https://raw.githubusercontent.com/BeanGreen247/ArchLinux-KDE-Plasma-setup-script/main/pacman.conf)
+
 ### Troubleshooting
 In case of any problems you could try rerunning the script more times just to be sure all got applied. If an error appears make sure to raise an Issue https://github.com/BeanGreen247/ArchLinux-KDE-Plasma-setup-script/issues with a lot of detail so that we can minize the amount of time required to fix issues.
 
