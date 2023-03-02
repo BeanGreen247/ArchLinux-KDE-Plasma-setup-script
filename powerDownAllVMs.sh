@@ -15,6 +15,7 @@
 
 #VAR
 pass="somepasswordhere"
+username="usernamehere"
 echo $pass | sudo -S systemctl kill libvirtd
 echo $pass | sudo -S systemctl kill libvirtd-ro.socket
 echo $pass | sudo -S systemctl kill libvirtd-admin.socket
@@ -49,6 +50,6 @@ echo $pass | sudo -S systemctl --signal=TERM libvirtd-ro.socket
 echo $pass | sudo -S systemctl --signal=TERM libvirtd-admin.socket
 echo $pass | sudo -S systemctl --signal=TERM libvirtd.socket
 echo $pass | sudo -S systemctl restart libvirtd
-echo $pass | sudo -S bash /home/beangreen247/scripts/freeMem.sh
+echo $pass | sudo -S bash /home/$username/scripts/freeMem.sh
 echo $pass | sudo -S systemctl status libvirtd
 exit 1
