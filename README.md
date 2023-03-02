@@ -70,6 +70,11 @@ Is used to keep system stable and updates minimal.
 
 [pacman.conf](https://raw.githubusercontent.com/BeanGreen247/ArchLinux-KDE-Plasma-setup-script/main/pacman.conf)
 
+### powerDownAllVMs.sh
+a script that powers down a set kVM based on the name 
+
+[powerDownAllVMs.sh](https://github.com/BeanGreen247/powerDownAllVMs.sh)
+
 ### Troubleshooting
 In case of any problems you could try rerunning the script more times just to be sure all got applied. If an error appears make sure to raise an Issue https://github.com/BeanGreen247/ArchLinux-KDE-Plasma-setup-script/issues with a lot of detail so that we can minize the amount of time required to fix issues.
 
