@@ -75,6 +75,11 @@ a script that powers down a set kVM based on the name
 
 [powerDownAllVMs.sh](https://github.com/BeanGreen247/powerDownAllVMs.sh)
 
+### freeMem.sh
+a small or shall I say tiny script to clean up memory 
+
+[freeMem.sh](https://github.com/BeanGreen247/freeMem.sh)
+
 ### Troubleshooting
 In case of any problems you could try rerunning the script more times just to be sure all got applied. If an error appears make sure to raise an Issue https://github.com/BeanGreen247/ArchLinux-KDE-Plasma-setup-script/issues with a lot of detail so that we can minize the amount of time required to fix issues.
 
