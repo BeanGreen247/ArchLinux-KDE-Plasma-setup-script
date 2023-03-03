@@ -51,5 +51,5 @@ echo $pass | sudo -S systemctl --signal=TERM libvirtd-admin.socket
 echo $pass | sudo -S systemctl --signal=TERM libvirtd.socket
 echo $pass | sudo -S systemctl restart libvirtd
 echo $pass | sudo -S bash /home/$username/scripts/freeMem.sh
-echo $pass | sudo -S systemctl status libvirtd
+xdotool key Q | systemctl status libvirtd
 exit 1
