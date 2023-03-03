@@ -75,6 +75,11 @@ a script that powers down a set kVM based on the name
 
 [powerDownAllVMs.sh](https://github.com/BeanGreen247/powerDownAllVMs.sh)
 
+Please make sure to install `xdotool` using your package manager
+```bash
+sudo pacman -S xdotool
+```
+
 ### freeMem.sh
 a small or shall I say tiny script to clean up memory 
 
