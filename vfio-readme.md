@@ -11,74 +11,6 @@ The install will ask to replace a tables package just say yes and you are good t
 
 Make sure to reboot.
 
-Steps on creating a VM in virtual machine manager
-
-1. Pick Manual install
-2. Choose the OS you are installing: Microsoft Windows 11 (win11)
-3. RAM: 26624
-4. CPUs: 10
-5. Create a disk image for the VM: 256GiB (if you have a spare ssd you can pass it here)
-6. Tick Customize config before install
-7. make sure to select chiptset to be Q35 and secure boot firmware here, should be something like `UEFI x86_64: /usr/share/edk2/x64/OVMF_CODE.secboot.4m.fd`
-    * I should note that my Arch system does not have an EFI partition and yet it works under kVM
-8. Select NIC and change Network source to Virtual network 'default' NAT
-9. Click add Hardware and add storage
-    select or create custom
-
-    and paste in the drive from the /dev/disk/by-id/ dir
-
-    in my case /dev/disk/by-id/ata-WDC_WD20EZBX-00AYRA0_WD-WXC2A71C5L58
-
-    To find the drive that we want to pass
-
-    run this commad
-    ```
-    sudo lshw -class disk -class storage
-    ```
-    and look for the disk to pass
-
-    //to identify just look at he product name (so WDC WD20EZBX-00A in my case)
-    ```
-    *-disk:1
-          description: ATA Disk
-          product: WDC WD20EZBX-00A
-          vendor: Western Digital
-          physical id: 1
-          bus info: scsi@2:0.0.0
-          logical name: /dev/sdb
-          version: 1A01
-          serial: WD-WXC2A71C5L58
-          size: 1863GiB (2TB)
-          capabilities: gpt-1.00 partitioned partitioned:gpt
-          configuration: ansiversion=5 guid=e625b1c9-7160-4c36-8d34-e4d258eb02eb logicalsectorsize=512 sectorsize=4096
-    ```
-    next oppen your file explorer and navigate to here `/dev/disk/by-id/`
-
-    and look for the drive
-
-    in my case `/dev/disk/by-id/ata-WDC_WD20EZBX-00AYRA0_WD-WXC2A71C5L58`
-
-    there will be multiple seperated by parts and you need the one without "part" in its name so in my case `ata-WDC_WD20EZBX-00AYRA0_WD-WXC2A71C5L58`
-
-    next copy its location and paste in into the select or create custom box as mention at the start
-
-    next select Device type as Disk device and bus type as sata and click finish
-
-    next add a SATA CDROM, click add hardware Select Storage and pick Device type as CDROM device and bus type as SATA and finally click finish
-
-    now under source path click browse and then click browse local and pick the windows 10 install media (iso file)
-
-    go into boot options and change the boot order with all drives and the cdrom selected
-
-    with all that hit apply and click on the monitor icon and click on Power on virtual machine
-
-so the vm is successfully created and the os is ready to be installed so install it normally
-
-i will be getting a spare ssd at some point so i will reinstall windows onto the new ssd and pass it into the vm duh
-
-once it is finished with the install you want to trun it off
-
-
 make sure iommu is enabled in your bios and do the following
 ```
 sudo nano /etc/default/grub
@@ -164,20 +96,67 @@ next create a new virtual machine
 Steps on creating a VM in virtual machine manager
 
 1. Pick Manual install
-2. Choose the OS you are installing: Microsoft Windows 10 (win10)
-3. RAM: 16384
-4. CPUs: 8
-5. Create a disk image for the VM: 480GiB (if you have a spare ssd you can pass it here, i will get a 256G ssd)
+2. Choose the OS you are installing: Microsoft Windows 11 (win11)
+3. RAM: 26624
+4. CPUs: 10
+5. Create a disk image for the VM: 256GiB (if you have a spare ssd you can pass it here)
 6. Tick Customize config before install
-7. Select NIC and change Network source to Virtual network 'default' NAT
+7. make sure to select chiptset to be Q35 and secure boot firmware here, should be something like `UEFI x86_64: /usr/share/edk2/x64/OVMF_CODE.secboot.4m.fd`
+    * I should note that my Arch system does not have an EFI partition and yet it works under kVM
+8. Select NIC and change Network source to Virtual network 'default' NAT
+9. Click add Hardware and add storage
+    select or create custom
 
-next add a SATA CDROM, click add hardware Select Storage and pick Device type as CDROM device and bus type as SATA and finally click finish
+    and paste in the drive from the /dev/disk/by-id/ dir
 
-now under source path click browse and then click browse local and pick the windows 10 install media (iso file)
-go into boot options and change the boot order with all drives and the cdrom selected
-with all that hit apply and click on the monitor icon and click on Power on virtual machine
+    in my case /dev/disk/by-id/ata-WDC_WD20EZBX-00AYRA0_WD-WXC2A71C5L58
+
+    To find the drive that we want to pass
+
+    run this commad
+    ```
+    sudo lshw -class disk -class storage
+    ```
+    and look for the disk to pass
+
+    //to identify just look at he product name (so WDC WD20EZBX-00A in my case)
+    ```
+    *-disk:1
+          description: ATA Disk
+          product: WDC WD20EZBX-00A
+          vendor: Western Digital
+          physical id: 1
+          bus info: scsi@2:0.0.0
+          logical name: /dev/sdb
+          version: 1A01
+          serial: WD-WXC2A71C5L58
+          size: 1863GiB (2TB)
+          capabilities: gpt-1.00 partitioned partitioned:gpt
+          configuration: ansiversion=5 guid=e625b1c9-7160-4c36-8d34-e4d258eb02eb logicalsectorsize=512 sectorsize=4096
+    ```
+    next oppen your file explorer and navigate to here `/dev/disk/by-id/`
+
+    and look for the drive
+
+    in my case `/dev/disk/by-id/ata-WDC_WD20EZBX-00AYRA0_WD-WXC2A71C5L58`
+
+    there will be multiple seperated by parts and you need the one without "part" in its name so in my case `ata-WDC_WD20EZBX-00AYRA0_WD-WXC2A71C5L58`
+
+    next copy its location and paste in into the select or create custom box as mention at the start
+
+    next select Device type as Disk device and bus type as sata and click finish
+
+    next add a SATA CDROM, click add hardware Select Storage and pick Device type as CDROM device and bus type as SATA and finally click finish
+
+    now under source path click browse and then click browse local and pick the windows 10 install media (iso file)
+
+    go into boot options and change the boot order with all drives and the cdrom selected
+
+    with all that hit apply and click on the monitor icon and click on Power on virtual machine
+
 so the vm is successfully created and the os is ready to be installed so install it normally
-* i used Windows 10 Pro for Workstations
+
+i will be getting a spare ssd at some point so i will reinstall windows onto the new ssd and pass it into the vm duh
 
 once it is finished with the install you want to trun it off
 
@@ -340,7 +319,7 @@ echo $pass | sudo -S systemctl set-property --runtime -- init.scope AllowedCPUs=
 
 the script that we added at startup/on login will reassing cpu cores back to linux
 
-to do that run it as follows `sudo bash reassign-cpu.sh`
+to do that run it as follows `sudo bash reassign-cpu.sh`, this script should be run after powering down the VM as well to return all the cores to our Linux host
 
 ```
 sudo nano unassign-cpu.sh
@@ -352,7 +331,7 @@ echo $pass | sudo -S systemctl set-property --runtime -- user.slice AllowedCPUs=
 echo $pass | sudo -S systemctl set-property --runtime -- init.scope AllowedCPUs=1,7
 ```
 
-this script will be launched befor running the VM for optimal performance, leaving ounly 2 cores with our Linux env
+this script will be launched before running the VM for optimal performance, leaving ounly 2 cores with our Linux env
 
 keyboard and mouse passthrough time
 ```
@@ -437,18 +416,9 @@ and this at the end
     <qemu:arg value="-device"/>
     <qemu:arg value="ich9-intel-hda,addr=1f.1"/>
     <qemu:arg value="-audiodev"/>
-    <qemu:arg value="id=alsa,driver=snd_hda_intel"/>
+    <qemu:arg value="id=alsa,driver=vfio-pci"/>
   </qemu:commandline>
 </domain>
-```
-to verify your user id just look into the passwd file
-```
-grep beangreen247 /etc/passwd
-```
-```
-|beangreen247@ElministerReborn [22:28:05] ~ branch:|
->>> grep beangreen247 /etc/passwd
-beangreen247:x:1000:1000:beangreen247:/home/beangreen247:/bin/bash
 ```
 find the audio driver
 ```
