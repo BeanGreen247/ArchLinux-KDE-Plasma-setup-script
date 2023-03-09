@@ -338,8 +338,6 @@
   <qemu:commandline>
     <qemu:arg value="-device"/>
     <qemu:arg value="ich9-intel-hda,addr=1f.1"/>
-    <qemu:arg value="-audiodev"/>
-    <qemu:arg value="id=alsa,driver=vfio-pci"/>
     <qemu:arg value="-mem-prealloc"/>
   </qemu:commandline>
 </domain>
