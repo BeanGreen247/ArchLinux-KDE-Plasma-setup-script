@@ -499,3 +499,7 @@ the `powerDownAllVMs.sh` script can be found here [powerDownAllVMs.sh](https://g
 and the full and final XML file is located here [settings.xml](https://github.com/BeanGreen247/ArchLinux-KDE-Plasma-setup-script/blob/main/settings.xml)
 
 in windows we have to do some more changes in order for all the VM checks to pass, I was able to get most of them, but hey it works
+
+passing the BIOS check https://github.com/BeanGreen247/ArchLinux-KDE-Plasma-setup-script/tree/main/add_this_to_autostart_in_windows_vm
+
+make sure to change the information based on your setup
