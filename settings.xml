@@ -1,0 +1,343 @@
+<domain xmlns:qemu="http://libvirt.org/schemas/domain/qemu/1.0" type="kvm">
+  <name>win11</name>
+  <uuid>2a492221-6f5d-4a8d-b0ab-be106bba36e9</uuid>
+  <metadata>
+    <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0">
+      <libosinfo:os id="http://microsoft.com/win/11"/>
+    </libosinfo:libosinfo>
+  </metadata>
+  <memory unit="KiB">16777216</memory>
+  <currentMemory unit="KiB">16777216</currentMemory>
+  <memoryBacking>
+    <source type="memfd"/>
+    <access mode="shared"/>
+  </memoryBacking>
+  <vcpu placement="static" current="10">12</vcpu>
+  <vcpus>
+    <vcpu id="0" enabled="yes" hotpluggable="no" order="1"/>
+    <vcpu id="1" enabled="no" hotpluggable="yes" order="2"/>
+    <vcpu id="2" enabled="yes" hotpluggable="yes" order="4"/>
+    <vcpu id="3" enabled="yes" hotpluggable="yes" order="5"/>
+    <vcpu id="4" enabled="yes" hotpluggable="yes" order="6"/>
+    <vcpu id="5" enabled="yes" hotpluggable="yes" order="7"/>
+    <vcpu id="6" enabled="yes" hotpluggable="yes" order="3"/>
+    <vcpu id="7" enabled="no" hotpluggable="yes" order="8"/>
+    <vcpu id="8" enabled="yes" hotpluggable="yes" order="9"/>
+    <vcpu id="9" enabled="yes" hotpluggable="yes" order="10"/>
+    <vcpu id="10" enabled="yes" hotpluggable="yes" order="11"/>
+    <vcpu id="11" enabled="yes" hotpluggable="yes" order="12"/>
+  </vcpus>
+  <iothreads>4</iothreads>
+  <iothreadids>
+    <iothread id="1"/>
+    <iothread id="2"/>
+    <iothread id="3"/>
+    <iothread id="4"/>
+  </iothreadids>
+  <cputune>
+    <vcpupin vcpu="0" cpuset="0"/>
+    <vcpupin vcpu="1" cpuset="3"/>
+    <vcpupin vcpu="2" cpuset="4"/>
+    <vcpupin vcpu="3" cpuset="5"/>
+    <vcpupin vcpu="4" cpuset="6"/>
+    <vcpupin vcpu="5" cpuset="9"/>
+    <vcpupin vcpu="6" cpuset="10"/>
+    <vcpupin vcpu="7" cpuset="11"/>
+    <emulatorpin cpuset="1-2,7-8"/>
+    <iothreadpin iothread="1" cpuset="1"/>
+    <iothreadpin iothread="2" cpuset="2"/>
+    <iothreadpin iothread="3" cpuset="7"/>
+    <iothreadpin iothread="4" cpuset="8"/>
+  </cputune>
+  <sysinfo type="smbios">
+    <bios>
+      <entry name="vendor">American Megatrends Inc.</entry>
+      <entry name="version">A.40</entry>
+      <entry name="date">09/10/2023</entry>
+    </bios>
+    <system>
+      <entry name="manufacturer">ArchLinux</entry>
+      <entry name="product">Virt-Manager</entry>
+      <entry name="version">4.1.0</entry>
+    </system>
+    <baseBoard>
+      <entry name="manufacturer">ASUS</entry>
+      <entry name="product">TUF GAMING B460M-PLUS</entry>
+      <entry name="version">Rev 1.xx</entry>
+      <entry name="serial">200569104900493</entry>
+    </baseBoard>
+    <chassis>
+      <entry name="manufacturer">SilentiumPC</entry>
+      <entry name="version">SPC156</entry>
+      <entry name="serial">SPC156</entry>
+      <entry name="asset">Gladius M35W</entry>
+      <entry name="sku">Pure Black</entry>
+    </chassis>
+    <oemStrings>
+      <entry>myappname:some arbitrary data</entry>
+      <entry>otherappname:more arbitrary data</entry>
+    </oemStrings>
+  </sysinfo>
+  <sysinfo type="fwcfg">
+    <entry name="opt/com.example/name">example value</entry>
+    <entry name="opt/com.coreos/config" file="/home/beangreen247/provision.ign"/>
+  </sysinfo>
+  <os>
+    <type arch="x86_64" machine="pc-q35-7.2">hvm</type>
+    <loader readonly="yes" secure="yes" type="pflash">/usr/share/edk2/x64/OVMF_CODE.secboot.4m.fd</loader>
+    <nvram>/var/lib/libvirt/qemu/nvram/win11_VARS.fd</nvram>
+    <bootmenu enable="yes"/>
+    <smbios mode="sysinfo"/>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+    <hyperv mode="custom">
+      <relaxed state="on"/>
+      <vapic state="on"/>
+      <spinlocks state="on" retries="8191"/>
+      <vpindex state="on"/>
+      <runtime state="on"/>
+      <synic state="on"/>
+      <stimer state="on">
+        <direct state="on"/>
+      </stimer>
+      <reset state="on"/>
+      <vendor_id state="on" value="FckYouNVIDIA"/>
+      <frequencies state="on"/>
+      <reenlightenment state="on"/>
+      <tlbflush state="on"/>
+      <ipi state="on"/>
+      <evmcs state="off"/>
+    </hyperv>
+    <kvm>
+      <hidden state="on"/>
+    </kvm>
+    <vmport state="off"/>
+    <smm state="on"/>
+    <ioapic driver="kvm"/>
+  </features>
+  <cpu mode="host-passthrough" check="none" migratable="on">
+    <topology sockets="1" dies="1" cores="6" threads="2"/>
+    <cache level="3" mode="emulate"/>
+    <feature policy="disable" name="hypervisor"/>
+    <feature policy="require" name="svm"/>
+    <feature policy="require" name="invtsc"/>
+    <feature policy="require" name="topoext"/>
+  </cpu>
+  <clock offset="localtime">
+    <timer name="rtc" tickpolicy="catchup"/>
+    <timer name="pit" tickpolicy="discard"/>
+    <timer name="hpet" present="no"/>
+    <timer name="hypervclock" present="yes"/>
+    <timer name="tsc" present="yes" mode="native"/>
+  </clock>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>destroy</on_crash>
+  <pm>
+    <suspend-to-mem enabled="no"/>
+    <suspend-to-disk enabled="no"/>
+  </pm>
+  <devices>
+    <emulator>/usr/bin/qemu-system-x86_64</emulator>
+    <disk type="file" device="disk">
+      <driver name="qemu" type="qcow2" cache="writethrough"/>
+      <source file="/var/lib/libvirt/images/win11.qcow2"/>
+      <target dev="sdc" bus="sata"/>
+      <serial>SOME RANDOM-ISH TEXT</serial>
+      <boot order="1"/>
+      <address type="drive" controller="0" bus="0" target="0" unit="2"/>
+    </disk>
+    <disk type="file" device="disk">
+      <driver name="qemu" type="qcow2" cache="writethrough"/>
+      <source file="/var/lib/libvirt/images/win11data.qcow2"/>
+      <target dev="sdd" bus="sata"/>
+      <serial>SOME RANDOM-ISH TEXT</serial>
+      <boot order="2"/>
+      <address type="drive" controller="0" bus="0" target="0" unit="3"/>
+    </disk>
+    <controller type="usb" index="0" model="qemu-xhci" ports="15">
+      <address type="pci" domain="0x0000" bus="0x02" slot="0x00" function="0x0"/>
+    </controller>
+    <controller type="pci" index="0" model="pcie-root"/>
+    <controller type="pci" index="1" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="1" port="0x10"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x0" multifunction="on"/>
+    </controller>
+    <controller type="pci" index="2" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="2" port="0x11"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x1"/>
+    </controller>
+    <controller type="pci" index="3" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="3" port="0x12"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x2"/>
+    </controller>
+    <controller type="pci" index="4" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="4" port="0x13"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x3"/>
+    </controller>
+    <controller type="pci" index="5" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="5" port="0x14"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x4"/>
+    </controller>
+    <controller type="pci" index="6" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="6" port="0x15"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x5"/>
+    </controller>
+    <controller type="pci" index="7" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="7" port="0x16"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x6"/>
+    </controller>
+    <controller type="pci" index="8" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="8" port="0x17"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x7"/>
+    </controller>
+    <controller type="pci" index="9" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="9" port="0x18"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x0" multifunction="on"/>
+    </controller>
+    <controller type="pci" index="10" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="10" port="0x19"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x1"/>
+    </controller>
+    <controller type="pci" index="11" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="11" port="0x1a"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x2"/>
+    </controller>
+    <controller type="pci" index="12" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="12" port="0x1b"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x3"/>
+    </controller>
+    <controller type="pci" index="13" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="13" port="0x1c"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x4"/>
+    </controller>
+    <controller type="pci" index="14" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="14" port="0x1d"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x5"/>
+    </controller>
+    <controller type="pci" index="15" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="15" port="0x1e"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x6"/>
+    </controller>
+    <controller type="pci" index="16" model="pcie-to-pci-bridge">
+      <model name="pcie-pci-bridge"/>
+      <address type="pci" domain="0x0000" bus="0x05" slot="0x00" function="0x0"/>
+    </controller>
+    <controller type="sata" index="0">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x1f" function="0x2"/>
+    </controller>
+    <controller type="virtio-serial" index="0">
+      <address type="pci" domain="0x0000" bus="0x03" slot="0x00" function="0x0"/>
+    </controller>
+    <interface type="network">
+      <mac address="52:54:00:c2:73:22"/>
+      <source network="default"/>
+      <model type="e1000e"/>
+      <address type="pci" domain="0x0000" bus="0x01" slot="0x00" function="0x0"/>
+    </interface>
+    <input type="evdev">
+      <source dev="/dev/input/event19" grab="all" repeat="on"/>
+    </input>
+    <input type="evdev">
+      <source dev="/dev/input/event5"/>
+    </input>
+    <input type="mouse" bus="ps2"/>
+    <input type="keyboard" bus="ps2"/>
+    <tpm model="tpm-crb">
+      <backend type="emulator" version="2.0"/>
+    </tpm>
+    <graphics type="spice" port="-1" autoport="no">
+      <listen type="address"/>
+      <image compression="off"/>
+      <gl enable="no"/>
+    </graphics>
+    <audio id="1" type="spice"/>
+    <video>
+      <model type="qxl" ram="65536" vram="65536" vgamem="16384" heads="1" primary="yes"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x01" function="0x0"/>
+    </video>
+    <hostdev mode="subsystem" type="usb" managed="no">
+      <source>
+        <vendor id="0x045e"/>
+        <product id="0x028e"/>
+      </source>
+      <address type="usb" bus="0" port="7"/>
+    </hostdev>
+    <hostdev mode="subsystem" type="usb" managed="yes">
+      <source>
+        <vendor id="0x05e3"/>
+        <product id="0x0610"/>
+      </source>
+      <address type="usb" bus="0" port="4"/>
+    </hostdev>
+    <hostdev mode="subsystem" type="usb" managed="yes">
+      <source>
+        <vendor id="0x1c4f"/>
+        <product id="0x0084"/>
+      </source>
+      <address type="usb" bus="0" port="5"/>
+    </hostdev>
+    <hostdev mode="subsystem" type="usb" managed="yes">
+      <source>
+        <vendor id="0x0a12"/>
+        <product id="0x0001"/>
+      </source>
+      <address type="usb" bus="0" port="6"/>
+    </hostdev>
+    <hostdev mode="subsystem" type="pci" managed="yes">
+      <source>
+        <address domain="0x0000" bus="0x01" slot="0x00" function="0x0"/>
+      </source>
+      <address type="pci" domain="0x0000" bus="0x06" slot="0x00" function="0x0"/>
+    </hostdev>
+    <hostdev mode="subsystem" type="pci" managed="yes">
+      <source>
+        <address domain="0x0000" bus="0x01" slot="0x00" function="0x1"/>
+      </source>
+      <address type="pci" domain="0x0000" bus="0x07" slot="0x00" function="0x0"/>
+    </hostdev>
+    <hostdev mode="subsystem" type="usb" managed="yes">
+      <source>
+        <vendor id="0x046d"/>
+        <product id="0xc077"/>
+      </source>
+      <address type="usb" bus="0" port="1"/>
+    </hostdev>
+    <redirdev bus="usb" type="spicevmc">
+      <address type="usb" bus="0" port="2"/>
+    </redirdev>
+    <redirdev bus="usb" type="spicevmc">
+      <address type="usb" bus="0" port="3"/>
+    </redirdev>
+    <memballoon model="virtio">
+      <address type="pci" domain="0x0000" bus="0x04" slot="0x00" function="0x0"/>
+    </memballoon>
+    <shmem name="looking-glass">
+      <model type="ivshmem-plain"/>
+      <size unit="M">32</size>
+      <address type="pci" domain="0x0000" bus="0x10" slot="0x01" function="0x0"/>
+    </shmem>
+  </devices>
+  <qemu:commandline>
+    <qemu:arg value="-device"/>
+    <qemu:arg value="ich9-intel-hda,addr=1f.1"/>
+    <qemu:arg value="-mem-prealloc"/>
+  </qemu:commandline>
+</domain>
