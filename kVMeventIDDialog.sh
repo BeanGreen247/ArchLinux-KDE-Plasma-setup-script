@@ -3,7 +3,7 @@
 # This script creates a dialog at startup that shows current eventIDs to be used in kVMs
 #
 keyboardEventID=$(ls -al /dev/input/by-id | grep usb-LIZHI_Flash_IC_USB_Keyboard-event-kbd | awk {'print $10'} | cut -c 4-)
-mouseEventID=$(ls -al /dev/input/by-id | grep usb-Logitech_USB_Optical_Mouse-event-mouse | awk {'print $10'} | cut -c 4-)
+mouseEventID=$(ls -al /dev/input/by-id | grep usb-0000_USB_OPTICAL_MOUSE-event-mouse | awk {'print $10'} | cut -c 4-)
 echo "Keyboard Event ID: $keyboardEventID" > eventIDs.txt
 echo "Mouse Event ID: $mouseEventID" >> eventIDs.txt
 echo "Make sure to adjust your kVM XML/settings for input devices" >> eventIDs.txt
