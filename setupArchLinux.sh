@@ -143,7 +143,7 @@ function main {
     wget -O /home/$username/pacman.conf https://raw.githubusercontent.com/BeanGreen247/ArchLinux-KDE-Plasma-setup-script/main/pacman.conf
     echo $pass | sudo -S cp -r /home/$username/pacman.conf /etc/pacman.conf
     rm -rf /home/$username/pacman.conf
-    echo 'Getting current pacman.conf file...\e[1;32m[DONE]\e[1;0m'
+    echo -e 'Getting current pacman.conf file...\e[1;32m[DONE]\e[1;0m'
     
     echo -e "Script created by \e[1;32mBeanGreen247\e[1;0m \e[1;31mhttps://github.com/BeanGreen247 \e[1;0m\n"
 
