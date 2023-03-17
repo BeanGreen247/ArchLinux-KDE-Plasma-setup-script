@@ -9,6 +9,16 @@ A script that automates the etire process of setting up the full KDE plasma desk
 * after it finishes make sure to reboot before running the script and after running it
 * DO NOT RUN AS SUDO/ROOT
 
+### Downloading the script
+```bash
+wget https://raw.githubusercontent.com/BeanGreen247/ArchLinux-KDE-Plasma-setup-script/main/setupArchLinux.sh
+```
+
+### Executing the script
+```bash
+bash setupArchLinux.sh
+```
+
 ### Script variables
 Please make sure to adjust for your system before running the script. I have tested in a VM so here is what the variables looked like for me
 
