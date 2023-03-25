@@ -24,9 +24,9 @@ to this `GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on resume=UUID=0ea1742a-d
 basically we add `intel_iommu=on` if on intel or `amd_iommu=on` if on amd and add it between `quiet` and `resume=...`
 
 save the file and run this
-
+```
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-
+```
 then reboot
 
 so run this code
