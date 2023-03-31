@@ -137,6 +137,9 @@ function main {
 
     echo 'Installing Fonts and Gaming stuff...'
     yay -S discord dxvk-bin mangohud goverlay ttf-ms-win11-auto
+    echo 'Installing nerd font...'
+    echo $pass | sudo -S pacman -S --noconfirm otf-aurulent-nerd otf-cascadia-code-nerd otf-codenewroman-nerd otf-droid-nerd otf-firamono-nerd otf-hasklig-nerd otf-hermit-nerd otf-opendyslexic-nerd otf-overpass-nerd ttf-3270-nerd ttf-agave-nerd ttf-anonymouspro-nerd ttf-arimo-nerd ttf-bigblueterminal-nerd ttf-bitstream-vera-mono-nerd ttf-cousine-nerd ttf-daddytime-mono-nerd ttf-dejavu-nerd ttf-fantasque-nerd ttf-firacode-nerd ttf-go-nerd ttf-hack-nerd ttf-heavydata-nerd ttf-iawriter-nerd ttf-ibmplex-mono-nerd ttf-inconsolata-go-nerd ttf-inconsolata-lgc-nerd ttf-inconsolata-nerd ttf-iosevka-nerd ttf-jetbrains-mono-nerd ttf-lekton-nerd ttf-liberation-mono-nerd ttf-lilex-nerd ttf-meslo-nerd ttf-monofur-nerd ttf-monoid-nerd ttf-mononoki-nerd ttf-mplus-nerd ttf-nerd-fonts-symbols-2048-em ttf-nerd-fonts-symbols-2048-em-mono ttf-nerd-fonts-symbols-common ttf-noto-nerd ttf-profont-nerd ttf-proggyclean-nerd ttf-roboto-mono-nerd ttf-sharetech-mono-nerd ttf-sourcecodepro-nerd ttf-space-mono-nerd ttf-terminus-nerd ttf-tinos-nerd ttf-ubuntu-mono-nerd ttf-ubuntu-nerd ttf-victor-mono-nerd
+    echo -e 'Installing font symbols...\e[1;32m[DONE]\e[1;0m'
     echo -e 'Installing Fonts and Gaming stuff...\e[1;32m[DONE]\e[1;0m'
     
     echo 'Getting current pacman.conf file...'
@@ -150,10 +153,7 @@ function main {
     cd /home/$username/.config/neofetch/ && rename config.conf config.conf.bak config.conf
     cd /home/$username/
     cp -r neofetch-themes/normal/ozozfetch /home/$username/.config/neofetch/config.conf
-    echo 'Installing nerd font...'
-    echo $pass | sudo -S pacman -S --noconfirm otf-aurulent-nerd otf-cascadia-code-nerd otf-codenewroman-nerd otf-droid-nerd otf-firamono-nerd otf-hasklig-nerd otf-hermit-nerd otf-opendyslexic-nerd otf-overpass-nerd ttf-3270-nerd ttf-agave-nerd ttf-anonymouspro-nerd ttf-arimo-nerd ttf-bigblueterminal-nerd ttf-bitstream-vera-mono-nerd ttf-cousine-nerd ttf-daddytime-mono-nerd ttf-dejavu-nerd ttf-fantasque-nerd ttf-firacode-nerd ttf-go-nerd ttf-hack-nerd ttf-heavydata-nerd ttf-iawriter-nerd ttf-ibmplex-mono-nerd ttf-inconsolata-go-nerd ttf-inconsolata-lgc-nerd ttf-inconsolata-nerd ttf-iosevka-nerd ttf-jetbrains-mono-nerd ttf-lekton-nerd ttf-liberation-mono-nerd ttf-lilex-nerd ttf-meslo-nerd ttf-monofur-nerd ttf-monoid-nerd ttf-mononoki-nerd ttf-mplus-nerd ttf-nerd-fonts-symbols-2048-em ttf-nerd-fonts-symbols-2048-em-mono ttf-nerd-fonts-symbols-common ttf-noto-nerd ttf-profont-nerd ttf-proggyclean-nerd ttf-roboto-mono-nerd ttf-sharetech-mono-nerd ttf-sourcecodepro-nerd ttf-space-mono-nerd ttf-terminus-nerd ttf-tinos-nerd ttf-ubuntu-mono-nerd ttf-ubuntu-nerd ttf-victor-mono-nerd
     rm -rf /home/$username/neofetch-themes
-    echo -e 'Installing font symbols...\e[1;32m[DONE]\e[1;0m'
     echo -e 'Getting neofetch theme...\e[1;32m[DONE]\e[1;0m'
     
     echo -e "Script created by \e[1;32mBeanGreen247\e[1;0m \e[1;31mhttps://github.com/BeanGreen247 \e[1;0m\n"
