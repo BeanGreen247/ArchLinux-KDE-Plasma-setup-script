@@ -151,10 +151,10 @@ function main {
     cd /home/$username/
     cp -r neofetch-themes/normal/acenoster.conf /home/$username/.config/neofetch/config.conf
     echo 'Installing font symbols...'
-    sudo pacman -S --noconfirm ttf-nerd-fonts-symbols-1000-em ttf-nerd-fonts-symbols-1000-em-mono ttf-nerd-fonts-symbols-common
+    echo $pass | sudo -S pacman -S --noconfirm ttf-nerd-fonts-symbols-1000-em ttf-nerd-fonts-symbols-1000-em-mono ttf-nerd-fonts-symbols-common
     rm -rf /home/$username/neofetch-themes
-    echo 'Installing font symbols...\e[1;32m[DONE]\e[1;0m'
-    echo 'Getting neofetch theme...\e[1;32m[DONE]\e[1;0m'
+    echo -e 'Installing font symbols...\e[1;32m[DONE]\e[1;0m'
+    echo -e 'Getting neofetch theme...\e[1;32m[DONE]\e[1;0m'
     
     echo -e "Script created by \e[1;32mBeanGreen247\e[1;0m \e[1;31mhttps://github.com/BeanGreen247 \e[1;0m\n"
 
