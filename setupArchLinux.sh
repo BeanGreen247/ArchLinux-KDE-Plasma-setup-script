@@ -147,9 +147,9 @@ function main {
     
     echo 'Getting neofetch theme...'
     git clone https://github.com/Chick2D/neofetch-themes
-    cd ~/.config/neofetch/ && rename config.conf config.conf.bak config.conf
-    cd
-    cp -r neofetch-themes/normal/acenoster.conf ~/.config/neofetch/config.conf
+    cd /home/$username/.config/neofetch/ && rename config.conf config.conf.bak config.conf
+    cd /home/$username/
+    cp -r neofetch-themes/normal/acenoster.conf /home/$username/.config/neofetch/config.conf
     echo 'Installing font symbols...'
     sudo pacman -S --noconfirm ttf-nerd-fonts-symbols-1000-em ttf-nerd-fonts-symbols-1000-em-mono ttf-nerd-fonts-symbols-common
     rm -rf /home/$username/neofetch-themes
