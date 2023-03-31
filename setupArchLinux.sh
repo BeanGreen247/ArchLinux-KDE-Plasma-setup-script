@@ -145,6 +145,16 @@ function main {
     rm -rf /home/$username/pacman.conf
     echo -e 'Getting current pacman.conf file...\e[1;32m[DONE]\e[1;0m'
     
+    echo 'Getting neofetch theme...'
+    git clone https://github.com/Chick2D/neofetch-themes
+    cd ~/.config/neofetch/ && rename config.conf config.conf.bak config.conf
+    cp -r neofetch-themes/normal/acenoster.conf ~/.config/neofetch/config.conf
+    echo 'Installing font symbols...'
+    sudo pacman -S --noconfirm ttf-nerd-fonts-symbols-1000-em ttf-nerd-fonts-symbols-1000-em-mono ttf-nerd-fonts-symbols-common
+    rm -rf /home/$username/neofetch-themes
+    echo 'Installing font symbols...\e[1;32m[DONE]\e[1;0m'
+    echo 'Getting neofetch theme...\e[1;32m[DONE]\e[1;0m'
+    
     echo -e "Script created by \e[1;32mBeanGreen247\e[1;0m \e[1;31mhttps://github.com/BeanGreen247 \e[1;0m\n"
 
     exit 1
