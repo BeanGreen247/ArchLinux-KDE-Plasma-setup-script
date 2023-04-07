@@ -356,11 +356,11 @@ and this is what it looks like in the xml for 10 cpus inside the VM //normally u
     <vcpupin vcpu="5" cpuset="9"/>
     <vcpupin vcpu="6" cpuset="10"/>
     <vcpupin vcpu="7" cpuset="11"/>
-    <emulatorpin cpuset="1-2,7-8"/>
+    <emulatorpin cpuset="1,7"/>
     <iothreadpin iothread="1" cpuset="1"/>
-    <iothreadpin iothread="2" cpuset="2"/>
-    <iothreadpin iothread="3" cpuset="7"/>
-    <iothreadpin iothread="4" cpuset="8"/>
+    <iothreadpin iothread="2" cpuset="7"/>
+    <iothreadpin iothread="3" cpuset="1"/>
+    <iothreadpin iothread="4" cpuset="7"/>
   </cputune>
 ```
 You may need to change the XML based on your topology
