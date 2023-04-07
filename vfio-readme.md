@@ -329,11 +329,11 @@ and this is what it looks like in the xml for 10 cpus inside the VM //normally u
   <vcpus>
     <vcpu id="0" enabled="yes" hotpluggable="no" order="1"/>
     <vcpu id="1" enabled="no" hotpluggable="yes" order="2"/>
-    <vcpu id="2" enabled="yes" hotpluggable="yes" order="4"/>
-    <vcpu id="3" enabled="yes" hotpluggable="yes" order="5"/>
-    <vcpu id="4" enabled="yes" hotpluggable="yes" order="6"/>
-    <vcpu id="5" enabled="yes" hotpluggable="yes" order="7"/>
-    <vcpu id="6" enabled="yes" hotpluggable="yes" order="3"/>
+    <vcpu id="2" enabled="yes" hotpluggable="yes" order="3"/>
+    <vcpu id="3" enabled="yes" hotpluggable="yes" order="4"/>
+    <vcpu id="4" enabled="yes" hotpluggable="yes" order="5"/>
+    <vcpu id="5" enabled="yes" hotpluggable="yes" order="6"/>
+    <vcpu id="6" enabled="yes" hotpluggable="yes" order="7"/>
     <vcpu id="7" enabled="no" hotpluggable="yes" order="8"/>
     <vcpu id="8" enabled="yes" hotpluggable="yes" order="9"/>
     <vcpu id="9" enabled="yes" hotpluggable="yes" order="10"/>
