@@ -283,7 +283,47 @@ restart the libvirtd service in order to apply
 ```
 sudo systemctl restart libvirtd
 ```
-and this is what it looks like in the xml
+and this is what it looks like in the xml for 8 cpus inside the VM
+```
+  <vcpu placement="static" current="8">12</vcpu>
+  <vcpus>
+    <vcpu id="0" enabled="yes" hotpluggable="no" order="1"/>
+    <vcpu id="1" enabled="no" hotpluggable="yes" order="2"/>
+    <vcpu id="2" enabled="no" hotpluggable="yes" order="3"/>
+    <vcpu id="3" enabled="yes" hotpluggable="yes" order="4"/>
+    <vcpu id="4" enabled="yes" hotpluggable="yes" order="5"/>
+    <vcpu id="5" enabled="yes" hotpluggable="yes" order="6"/>
+    <vcpu id="6" enabled="yes" hotpluggable="yes" order="7"/>
+    <vcpu id="7" enabled="no" hotpluggable="yes" order="8"/>
+    <vcpu id="8" enabled="no" hotpluggable="yes" order="9"/>
+    <vcpu id="9" enabled="yes" hotpluggable="yes" order="10"/>
+    <vcpu id="10" enabled="yes" hotpluggable="yes" order="11"/>
+    <vcpu id="11" enabled="yes" hotpluggable="yes" order="12"/>
+  </vcpus>
+  <iothreads>4</iothreads>
+  <iothreadids>
+    <iothread id="1"/>
+    <iothread id="2"/>
+    <iothread id="3"/>
+    <iothread id="4"/>
+  </iothreadids>
+  <cputune>
+    <vcpupin vcpu="0" cpuset="0"/>
+    <vcpupin vcpu="1" cpuset="3"/>
+    <vcpupin vcpu="2" cpuset="4"/>
+    <vcpupin vcpu="3" cpuset="5"/>
+    <vcpupin vcpu="4" cpuset="6"/>
+    <vcpupin vcpu="5" cpuset="9"/>
+    <vcpupin vcpu="6" cpuset="10"/>
+    <vcpupin vcpu="7" cpuset="11"/>
+    <emulatorpin cpuset="1-2,7-8"/>
+    <iothreadpin iothread="1" cpuset="1"/>
+    <iothreadpin iothread="2" cpuset="2"/>
+    <iothreadpin iothread="3" cpuset="7"/>
+    <iothreadpin iothread="4" cpuset="8"/>
+  </cputune>
+```
+and this is what it looks like in the xml for 10 cpus inside the VM //normally used
 ```
   <vcpu placement="static" current="8">12</vcpu>
   <vcpus>
@@ -344,14 +384,22 @@ to do that run it as follows `sudo bash reassign-cpu.sh`, this script should be 
 ```
 sudo nano unassign-cpu.sh
 ```
+for 8 cpus in VM
 ```
 pass="not_gonna_dox_myself"
 echo $pass | sudo -S systemctl set-property --runtime -- system.slice AllowedCPUs=1,2,7,8
 echo $pass | sudo -S systemctl set-property --runtime -- user.slice AllowedCPUs=1,2,7,8
 echo $pass | sudo -S systemctl set-property --runtime -- init.scope AllowedCPUs=1,2,7,8
 ```
+for 10 cpus in VM
+```
+pass="not_gonna_dox_myself"
+echo $pass | sudo -S systemctl set-property --runtime -- system.slice AllowedCPUs=1,7
+echo $pass | sudo -S systemctl set-property --runtime -- user.slice AllowedCPUs=1,7
+echo $pass | sudo -S systemctl set-property --runtime -- init.scope AllowedCPUs=1,7
+```
 
-this script will be launched before running the VM for optimal performance, leaving ounly 2 cores with our Linux env
+this script will be launched before running the VM for optimal performance, leaving ounly 2/4 cores with our Linux env
 
 keyboard and mouse passthrough time
 ```
