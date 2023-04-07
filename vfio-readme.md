@@ -349,13 +349,15 @@ and this is what it looks like in the xml for 10 cpus inside the VM //normally u
   </iothreadids>
   <cputune>
     <vcpupin vcpu="0" cpuset="0"/>
-    <vcpupin vcpu="1" cpuset="3"/>
-    <vcpupin vcpu="2" cpuset="4"/>
-    <vcpupin vcpu="3" cpuset="5"/>
-    <vcpupin vcpu="4" cpuset="6"/>
-    <vcpupin vcpu="5" cpuset="9"/>
-    <vcpupin vcpu="6" cpuset="10"/>
-    <vcpupin vcpu="7" cpuset="11"/>
+    <vcpupin vcpu="1" cpuset="2"/>
+    <vcpupin vcpu="2" cpuset="3"/>
+    <vcpupin vcpu="3" cpuset="4"/>
+    <vcpupin vcpu="4" cpuset="5"/>
+    <vcpupin vcpu="5" cpuset="6"/>
+    <vcpupin vcpu="6" cpuset="8"/>
+    <vcpupin vcpu="7" cpuset="9"/>
+    <vcpupin vcpu="8" cpuset="10"/>
+    <vcpupin vcpu="9" cpuset="11"/>
     <emulatorpin cpuset="1,7"/>
     <iothreadpin iothread="1" cpuset="1"/>
     <iothreadpin iothread="2" cpuset="7"/>
