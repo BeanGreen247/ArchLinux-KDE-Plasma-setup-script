@@ -106,7 +106,8 @@ function main {
     sleep 10
     echo 'Installing virt-manager and other virtual machine stuff...'
     echo $pass | sudo -S pacman -Sy
-    sudo pacman -S --needed virt-manager qemu vde2 dnsmasq bridge-utils edk2-ovmf swtpm qemu-block-gluster qemu-block-iscsi virt-manager libvirt ebtables dnsmasq bridge-utils
+    echo $pass | sudo -S pacman -S virt-manager qemu-base dnsmasq swtpm qemu-base qemu-block-gluster qemu-block-iscsi dnsmasq qemu-audio-pa libvirt libxml2 python3 python-pip gobject-introspection
+    python -m pip install catfish pygobject libvirt-python requests --user
     echo $pass | sudo -S systemctl enable libvirtd
     echo $pass | sudo -S systemctl start libvirtd
     echo $pass | sudo -S systemctl restart libvirtd
