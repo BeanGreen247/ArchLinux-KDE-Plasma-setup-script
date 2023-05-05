@@ -2,7 +2,8 @@
 
 Install packages
 ```
-sudo pacman -S virt-manager qemu vde2 iptables-nft dnsmasq bridge-utils openbsd-netcat edk2-ovmf swtpm qemu qemu-block-gluster qemu-block-iscsi virt-manager libvirt ebtables dnsmasq bridge-utils
+sudo pacman -S virt-manager qemu-base dnsmasq swtpm qemu-base qemu-block-gluster qemu-block-iscsi dnsmasq qemu-audio-pa libvirt libxml2 python3 python-pip gobject-introspection
+python -m pip install catfish pygobject libvirt-python requests --user
 sudo systemctl enable libvirtd
 sudo systemctl start libvirtd
 sudo systemctl restart libvirtd
