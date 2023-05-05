@@ -16,11 +16,11 @@
   <vcpus>
     <vcpu id="0" enabled="yes" hotpluggable="no" order="1"/>
     <vcpu id="1" enabled="no" hotpluggable="yes" order="2"/>
-    <vcpu id="2" enabled="yes" hotpluggable="yes" order="4"/>
-    <vcpu id="3" enabled="yes" hotpluggable="yes" order="5"/>
-    <vcpu id="4" enabled="yes" hotpluggable="yes" order="6"/>
-    <vcpu id="5" enabled="yes" hotpluggable="yes" order="7"/>
-    <vcpu id="6" enabled="yes" hotpluggable="yes" order="3"/>
+    <vcpu id="2" enabled="yes" hotpluggable="yes" order="3"/>
+    <vcpu id="3" enabled="yes" hotpluggable="yes" order="4"/>
+    <vcpu id="4" enabled="yes" hotpluggable="yes" order="5"/>
+    <vcpu id="5" enabled="yes" hotpluggable="yes" order="6"/>
+    <vcpu id="6" enabled="yes" hotpluggable="yes" order="7"/>
     <vcpu id="7" enabled="no" hotpluggable="yes" order="8"/>
     <vcpu id="8" enabled="yes" hotpluggable="yes" order="9"/>
     <vcpu id="9" enabled="yes" hotpluggable="yes" order="10"/>
@@ -36,18 +36,20 @@
   </iothreadids>
   <cputune>
     <vcpupin vcpu="0" cpuset="0"/>
-    <vcpupin vcpu="1" cpuset="3"/>
-    <vcpupin vcpu="2" cpuset="4"/>
-    <vcpupin vcpu="3" cpuset="5"/>
-    <vcpupin vcpu="4" cpuset="6"/>
-    <vcpupin vcpu="5" cpuset="9"/>
-    <vcpupin vcpu="6" cpuset="10"/>
-    <vcpupin vcpu="7" cpuset="11"/>
-    <emulatorpin cpuset="1-2,7-8"/>
+    <vcpupin vcpu="1" cpuset="2"/>
+    <vcpupin vcpu="2" cpuset="3"/>
+    <vcpupin vcpu="3" cpuset="4"/>
+    <vcpupin vcpu="4" cpuset="5"/>
+    <vcpupin vcpu="5" cpuset="6"/>
+    <vcpupin vcpu="6" cpuset="8"/>
+    <vcpupin vcpu="7" cpuset="9"/>
+    <vcpupin vcpu="8" cpuset="10"/>
+    <vcpupin vcpu="9" cpuset="11"/>
+    <emulatorpin cpuset="1,7"/>
     <iothreadpin iothread="1" cpuset="1"/>
-    <iothreadpin iothread="2" cpuset="2"/>
-    <iothreadpin iothread="3" cpuset="7"/>
-    <iothreadpin iothread="4" cpuset="8"/>
+    <iothreadpin iothread="2" cpuset="7"/>
+    <iothreadpin iothread="3" cpuset="1"/>
+    <iothreadpin iothread="4" cpuset="7"/>
   </cputune>
   <sysinfo type="smbios">
     <bios>
@@ -103,7 +105,7 @@
         <direct state="on"/>
       </stimer>
       <reset state="on"/>
-      <vendor_id state="on" value="FckYouNVIDIA"/>
+      <vendor_id state="on" value="buttplug"/>
       <frequencies state="on"/>
       <reenlightenment state="on"/>
       <tlbflush state="on"/>
@@ -246,53 +248,57 @@
     <controller type="virtio-serial" index="0">
       <address type="pci" domain="0x0000" bus="0x03" slot="0x00" function="0x0"/>
     </controller>
-    <interface type="network">
+    <interface type="direct">
       <mac address="52:54:00:c2:73:22"/>
-      <source network="default"/>
-      <model type="e1000e"/>
-      <address type="pci" domain="0x0000" bus="0x01" slot="0x00" function="0x0"/>
+      <source dev="eno1" mode="bridge"/>
+      <model type="rtl8139"/>
+      <address type="pci" domain="0x0000" bus="0x10" slot="0x02" function="0x0"/>
     </interface>
+    <serial type="pty">
+      <target type="isa-serial" port="0">
+        <model name="isa-serial"/>
+      </target>
+    </serial>
+    <console type="pty">
+      <target type="serial" port="0"/>
+    </console>
     <input type="evdev">
-      <source dev="/dev/input/event19" grab="all" repeat="on"/>
+      <source dev="/dev/input/event16" grab="all" repeat="on"/>
     </input>
     <input type="evdev">
-      <source dev="/dev/input/event5"/>
+      <source dev="/dev/input/event15"/>
     </input>
     <input type="mouse" bus="ps2"/>
     <input type="keyboard" bus="ps2"/>
     <tpm model="tpm-crb">
       <backend type="emulator" version="2.0"/>
     </tpm>
-    <graphics type="spice" port="-1" autoport="no">
-      <listen type="address"/>
+    <graphics type="spice" port="-1" autoport="no" listen="0.0.0.0">
+      <listen type="address" address="0.0.0.0"/>
       <image compression="off"/>
       <gl enable="no"/>
     </graphics>
+    <sound model="ich9">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x1b" function="0x0"/>
+    </sound>
     <audio id="1" type="spice"/>
     <video>
       <model type="qxl" ram="65536" vram="65536" vgamem="16384" heads="1" primary="yes"/>
       <address type="pci" domain="0x0000" bus="0x00" slot="0x01" function="0x0"/>
     </video>
-    <hostdev mode="subsystem" type="usb" managed="no">
-      <source>
-        <vendor id="0x045e"/>
-        <product id="0x028e"/>
-      </source>
-      <address type="usb" bus="0" port="7"/>
-    </hostdev>
     <hostdev mode="subsystem" type="usb" managed="yes">
       <source>
-        <vendor id="0x05e3"/>
-        <product id="0x0610"/>
+        <vendor id="0x0458"/>
+        <product id="0x0186"/>
       </source>
-      <address type="usb" bus="0" port="4"/>
+      <address type="usb" bus="0" port="1"/>
     </hostdev>
     <hostdev mode="subsystem" type="usb" managed="yes">
       <source>
         <vendor id="0x1c4f"/>
         <product id="0x0084"/>
       </source>
-      <address type="usb" bus="0" port="5"/>
+      <address type="usb" bus="0" port="4"/>
     </hostdev>
     <hostdev mode="subsystem" type="usb" managed="yes">
       <source>
@@ -313,22 +319,23 @@
       </source>
       <address type="pci" domain="0x0000" bus="0x07" slot="0x00" function="0x0"/>
     </hostdev>
-    <hostdev mode="subsystem" type="usb" managed="yes">
-      <source>
-        <vendor id="0x046d"/>
-        <product id="0xc077"/>
-      </source>
-      <address type="usb" bus="0" port="1"/>
-    </hostdev>
     <redirdev bus="usb" type="spicevmc">
       <address type="usb" bus="0" port="2"/>
     </redirdev>
     <redirdev bus="usb" type="spicevmc">
       <address type="usb" bus="0" port="3"/>
     </redirdev>
+    <watchdog model="i6300esb" action="none">
+      <address type="pci" domain="0x0000" bus="0x10" slot="0x04" function="0x0"/>
+    </watchdog>
+    <watchdog model="itco" action="none"/>
     <memballoon model="virtio">
       <address type="pci" domain="0x0000" bus="0x04" slot="0x00" function="0x0"/>
     </memballoon>
+    <rng model="virtio">
+      <backend model="random">/dev/urandom</backend>
+      <address type="pci" domain="0x0000" bus="0x08" slot="0x00" function="0x0"/>
+    </rng>
     <shmem name="looking-glass">
       <model type="ivshmem-plain"/>
       <size unit="M">32</size>
