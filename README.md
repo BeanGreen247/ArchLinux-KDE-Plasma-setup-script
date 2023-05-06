@@ -99,6 +99,12 @@ a small or shall I say tiny script to clean up memory
 
 [freeMem.sh](https://github.com/BeanGreen247/scripts/blob/main/scripts/freeMem.sh)
 
+### kVMeventIDDialog.sh
+a script that creates a dialog at startup telling the user what to use in virt-manager for VM low latency inputs 
+
+[kVMeventIDDialog.sh](https://github.com/BeanGreen247/scripts/blob/main/scripts/kVMeventIDDialog.sh)
+
+
 ## fonts
 you may want to reinstall all nerd fonts after system update
 ```bash
