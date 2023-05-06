@@ -76,7 +76,7 @@ sudo nano /etc/mkinitcpio.conf
 ```
 and find a line that says `modules` and type in like this in order, this is important
 ```
-MODULES="vfio_pci vfio vfio_iommu_type1 vfio_virqfd"
+MODULES="vfio_pci vfio vfio_iommu_type1"
 ```
 next scroll until you find `hooks` and make sure that modconf is avaiable
 ```
