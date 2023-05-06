@@ -38,21 +38,19 @@ function main {
     #echo $pass |sudo -S echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
     echo $pass | sudo -S pacman -Syyuu --noconfirm
 
-    echo $pass | sudo -S pacman -S --noconfirm wget
+    echo $pass | sudo -S pacman -S --noconfirm wget dos2unix sed
     wget -O /home/$username/.bashrc https://raw.githubusercontent.com/BeanGreen247/dotfiles/master/bashrc/bashrc-blue
 
     echo "Scripts Prep..."
     mkdir /home/$username/scripts
-    echo "#!/bin/bash" | tee /home/$username/scripts/performance-mode.sh
-    echo "cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor" | tee -a /home/$username/scripts/performance-mode.sh
-    echo 'for file in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do echo "performance" > $file;' | tee -a /home/$username/scripts/performance-mode.sh
-    echo "cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor" | tee -a /home/$username/scripts/performance-mode.sh
-
-    echo "#!/bin/bash" | tee /home/$username/scripts/execute-performance-mode-sh-as-root.sh
-    echo 'pass="'$pass'"' | tee -a /home/$username/scripts/execute-performance-mode-sh-as-root.sh
-    echo 'sleep 3' | tee -a /home/$username/scripts/execute-performance-mode-sh-as-root.sh
-    echo 'chmod +x performance-mode.sh' | tee -a /home/$username/scripts/execute-performance-mode-sh-as-root.sh
-    echo 'echo '$pass' | sudo -S bash performance-mode.sh' | tee -a /home/$username/scripts/execute-performance-mode-sh-as-root.sh
+    wget -O /home/$username/scripts/fixLineEndings.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/fixLineEndings.sh
+    wget -O /home/$username/scripts/execute-performance-mode-sh-as-root.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/execute-performance-mode-sh-as-root.sh
+    wget -O /home/$username/scripts/performance-mode.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/performance-mode.sh
+    wget -O /home/$username/scripts/replaceString.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/replaceString.sh
+    cd /home/$username/scripts
+    bash replaceString.sh not_gonna_dox_myself $pass
+    bash fixLineEndings.sh
+    cd
 
     echo -e '\e[1;31m[IMPORTANT MESSAGE, PLEASE READ]\e[1;0m\n'
     echo 'The following scripts were created, make sure to add them to startup items.'
