@@ -45,7 +45,7 @@ function main {
     mkdir /home/$username/scripts
     echo "#!/bin/bash" | tee /home/$username/scripts/performance-mode.sh
     echo "cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor" | tee -a /home/$username/scripts/performance-mode.sh
-    echo 'for file in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do echo "performance" > $file; \e[1;32m[DONE]\e[1;0m' | tee -a /home/$username/scripts/performance-mode.sh
+    echo 'for file in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do echo "performance" > $file;' | tee -a /home/$username/scripts/performance-mode.sh
     echo "cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor" | tee -a /home/$username/scripts/performance-mode.sh
 
     echo "#!/bin/bash" | tee /home/$username/scripts/execute-performance-mode-sh-as-root.sh
