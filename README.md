@@ -87,7 +87,7 @@ Is used to keep system stable and updates minimal.
 ### powerDownAllVMs.sh
 a script that powers down a set kVM based on the name 
 
-[powerDownAllVMs.sh](https://github.com/BeanGreen247/powerDownAllVMs.sh)
+[powerDownAllVMs.sh](https://github.com/BeanGreen247/scripts/blob/main/scripts/powerDownAllVMs.sh)
 
 Please make sure to install `xdotool` using your package manager
 ```bash
@@ -97,7 +97,7 @@ sudo pacman -S xdotool
 ### freeMem.sh
 a small or shall I say tiny script to clean up memory 
 
-[freeMem.sh](https://github.com/BeanGreen247/freeMem.sh)
+[freeMem.sh](https://github.com/BeanGreen247/scripts/blob/main/scripts/freeMem.sh)
 
 ## fonts
 you may want to reinstall all nerd fonts after system update
