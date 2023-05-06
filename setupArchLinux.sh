@@ -38,21 +38,19 @@ function main {
     #echo $pass |sudo -S echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
     echo $pass | sudo -S pacman -Syyuu --noconfirm
 
-    echo $pass | sudo -S pacman -S --noconfirm wget
+    echo $pass | sudo -S pacman -S --noconfirm wget dos2unix sed
     wget -O /home/$username/.bashrc https://raw.githubusercontent.com/BeanGreen247/dotfiles/master/bashrc/bashrc-blue
 
     echo "Scripts Prep..."
     mkdir /home/$username/scripts
-    echo "#!/bin/bash" | tee /home/$username/scripts/performance-mode.sh
-    echo "cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor" | tee -a /home/$username/scripts/performance-mode.sh
-    echo 'for file in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do echo "performance" > $file; \e[1;32m[DONE]\e[1;0m' | tee -a /home/$username/scripts/performance-mode.sh
-    echo "cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor" | tee -a /home/$username/scripts/performance-mode.sh
-
-    echo "#!/bin/bash" | tee /home/$username/scripts/execute-performance-mode-sh-as-root.sh
-    echo 'pass="'$pass'"' | tee -a /home/$username/scripts/execute-performance-mode-sh-as-root.sh
-    echo 'sleep 3' | tee -a /home/$username/scripts/execute-performance-mode-sh-as-root.sh
-    echo 'chmod +x performance-mode.sh' | tee -a /home/$username/scripts/execute-performance-mode-sh-as-root.sh
-    echo 'echo '$pass' | sudo -S bash performance-mode.sh' | tee -a /home/$username/scripts/execute-performance-mode-sh-as-root.sh
+    wget -O /home/$username/scripts/fixLineEndings.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/fixLineEndings.sh
+    wget -O /home/$username/scripts/execute-performance-mode-sh-as-root.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/execute-performance-mode-sh-as-root.sh
+    wget -O /home/$username/scripts/performance-mode.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/performance-mode.sh
+    wget -O /home/$username/scripts/replaceString.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/replaceString.sh
+    cd /home/$username/scripts
+    bash replaceString.sh not_gonna_dox_myself $pass
+    bash fixLineEndings.sh
+    cd
 
     echo -e '\e[1;31m[IMPORTANT MESSAGE, PLEASE READ]\e[1;0m\n'
     echo 'The following scripts were created, make sure to add them to startup items.'
@@ -65,7 +63,7 @@ function main {
     echo -e "\e[1;31m[Will resume in 30s...]\e[1;0m\n"
     sleep 30
     echo 'Installing GUI, apps and other packages...'
-    echo $pass | sudo -S pacman -S --noconfirm --needed grub-customizer htop btop nemo neofetch xorg cpupower firefox pulseaudio libreoffice base-devel git vim vi cronie net-tools linux-headers asp plasma plasma-wayland-session kde-applications obs-studio jre-openjdk jre11-openjdk jre8-openjdk jdk-openjdk jdk11-openjdk jdk8-openjdk gcc glibc gamemode lib32-gamemode lib32-vkd3d vkd3d git-lfs tmux filezilla ksysguard fakeroot zram-generator sddm-kcm audacious nss-mdns pulseaudio-bluetooth pulseaudio-alsa bluez-utils handbrake unrar mpv
+    echo $pass | sudo -S pacman -S --noconfirm --needed grub-customizer htop btop nemo neofetch xorg cpupower firefox pulseaudio libreoffice base-devel git vim vi cronie net-tools linux-headers asp plasma plasma-wayland-session kde-applications obs-studio jre-openjdk jre11-openjdk jre8-openjdk jdk-openjdk jdk11-openjdk jdk8-openjdk gcc glibc gamemode lib32-gamemode lib32-vkd3d vkd3d git-lfs tmux filezilla ksysguard fakeroot zram-generator sddm-kcm audacious nss-mdns pulseaudio-bluetooth pulseaudio-alsa bluez-utils handbrake unrar mpv smbclient gvfs-smb nemo-share dbus avahi python3 python-pip gobject-introspection
     echo $pass | sudo -S systemctl enable cronie sddm avahi-daemon
     echo $pass | sudo -S pacman -S --noconfirm --needed giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader cups samba alsa alsa-utils alsa-tools gnutls libpng wine-mono lib32-libxml2 lib32-mpg123 lib32-lcms2 lib32-giflib lib32-libpng lib32-gnutls pygtk python2-dbus lib32-libpulse lib32-fontconfig lib32-libxcomposite lib32-libxrender  lib32-libxslt lib32-gnutls lib32-libxi lib32-libxrandr lib32-libxinerama lib32-libcups lib32-freetype2 lib32-libpng lib32-openal python-pyopencl lib32-v4l-utils lib32-libxcursor lib32-mpg123 lib32-sdl xf86-video-intel lib32-mesa-libgl nss-mdns
     echo $pass | sudo -S systemctl enable cpupower
@@ -106,7 +104,8 @@ function main {
     sleep 10
     echo 'Installing virt-manager and other virtual machine stuff...'
     echo $pass | sudo -S pacman -Sy
-    sudo pacman -S --needed virt-manager qemu vde2 dnsmasq bridge-utils edk2-ovmf swtpm qemu-block-gluster qemu-block-iscsi virt-manager libvirt ebtables dnsmasq bridge-utils
+    echo $pass | sudo -S pacman -S virt-manager qemu-base dnsmasq swtpm qemu-base qemu-block-gluster qemu-block-iscsi dnsmasq qemu-audio-pa libvirt libxml2 python3 python-pip gobject-introspection
+    python -m pip install catfish pygobject libvirt-python requests --user
     echo $pass | sudo -S systemctl enable libvirtd
     echo $pass | sudo -S systemctl start libvirtd
     echo $pass | sudo -S systemctl restart libvirtd
@@ -138,7 +137,7 @@ function main {
     echo 'Installing Fonts and Gaming stuff...'
     yay -S discord dxvk-bin mangohud goverlay ttf-ms-win11-auto
     echo 'Installing nerd font...'
-    echo $pass | sudo -S pacman -S --noconfirm otf-aurulent-nerd otf-cascadia-code-nerd otf-codenewroman-nerd otf-droid-nerd otf-firamono-nerd otf-hasklig-nerd otf-hermit-nerd otf-opendyslexic-nerd otf-overpass-nerd ttf-3270-nerd ttf-agave-nerd ttf-anonymouspro-nerd ttf-arimo-nerd ttf-bigblueterminal-nerd ttf-bitstream-vera-mono-nerd ttf-cousine-nerd ttf-daddytime-mono-nerd ttf-dejavu-nerd ttf-fantasque-nerd ttf-firacode-nerd ttf-go-nerd ttf-hack-nerd ttf-heavydata-nerd ttf-iawriter-nerd ttf-ibmplex-mono-nerd ttf-inconsolata-go-nerd ttf-inconsolata-lgc-nerd ttf-inconsolata-nerd ttf-iosevka-nerd ttf-jetbrains-mono-nerd ttf-lekton-nerd ttf-liberation-mono-nerd ttf-lilex-nerd ttf-meslo-nerd ttf-monofur-nerd ttf-monoid-nerd ttf-mononoki-nerd ttf-mplus-nerd ttf-nerd-fonts-symbols-2048-em ttf-nerd-fonts-symbols-2048-em-mono ttf-nerd-fonts-symbols-common ttf-noto-nerd ttf-profont-nerd ttf-proggyclean-nerd ttf-roboto-mono-nerd ttf-sharetech-mono-nerd ttf-sourcecodepro-nerd ttf-space-mono-nerd ttf-terminus-nerd ttf-tinos-nerd ttf-ubuntu-mono-nerd ttf-ubuntu-nerd ttf-victor-mono-nerd
+    echo $pass | sudo -S pacman -S --noconfirm otf-aurulent-nerd otf-cascadia-code-nerd otf-codenewroman-nerd otf-droid-nerd otf-firamono-nerd otf-hasklig-nerd otf-hermit-nerd otf-opendyslexic-nerd otf-overpass-nerd ttf-3270-nerd ttf-agave-nerd ttf-anonymouspro-nerd ttf-arimo-nerd ttf-bigblueterminal-nerd ttf-bitstream-vera-mono-nerd ttf-cousine-nerd ttf-daddytime-mono-nerd ttf-dejavu-nerd ttf-fantasque-nerd ttf-firacode-nerd ttf-go-nerd ttf-hack-nerd ttf-heavydata-nerd ttf-iawriter-nerd ttf-ibmplex-mono-nerd ttf-inconsolata-go-nerd ttf-inconsolata-lgc-nerd ttf-inconsolata-nerd ttf-iosevka-nerd ttf-jetbrains-mono-nerd ttf-lekton-nerd ttf-liberation-mono-nerd ttf-lilex-nerd ttf-meslo-nerd ttf-monofur-nerd ttf-monoid-nerd ttf-mononoki-nerd ttf-mplus-nerd ttf-nerd-fonts-symbols-common ttf-noto-nerd ttf-profont-nerd ttf-proggyclean-nerd ttf-roboto-mono-nerd ttf-sharetech-mono-nerd ttf-sourcecodepro-nerd ttf-space-mono-nerd ttf-terminus-nerd ttf-tinos-nerd ttf-ubuntu-mono-nerd ttf-ubuntu-nerd ttf-victor-mono-nerd
     echo 'Installing japanese font...'
     echo $pass | sudo -S pacman -S --noconfirm noto-fonts-cjk noto-fonts-emoji noto-fonts
     echo -e 'Installing font symbols...\e[1;32m[DONE]\e[1;0m'
