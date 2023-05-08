@@ -69,6 +69,10 @@ function main {
     echo $pass | sudo -S systemctl enable cpupower
     echo $pass | sudo -S systemctl start cpupower
     echo -e "Installing GUI, apps and other packages...\e[1;32m[DONE]\e[1;0m"
+    
+    echo 'Getting btop configuration...'
+    wget -O /home/$username/.config/btop/btop.conf https://raw.githubusercontent.com/BeanGreen247/ArchLinux-KDE-Plasma-setup-script/main/btop.conf
+    echo 'Getting btop configuration...\e[1;32m[DONE]\e[1;0m'
 
     echo -e "\e[1;31m[Setting up zram...]\e[1;0m\n"
     echo $pass | sudo -S echo '# This config file enables a /dev/zram0 device with the default settings:' | sudo tee /usr/lib/systemd/zram-generator.conf
