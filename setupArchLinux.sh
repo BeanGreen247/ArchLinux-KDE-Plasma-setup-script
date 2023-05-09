@@ -129,6 +129,10 @@ function main {
     cd
     echo -e 'Installing yay...\e[1;32m[DONE]\e[1;0m'
 
+    echo 'Installing VNC Viewer...'
+    yay -S realvnc-vnc-viewer
+    echo 'Installing VNC Viewer...\e[1;32m[DONE]\e[1;0m'
+
     echo 'Installing Visual Studio Code...'
     yay -S visual-studio-code-bin
     echo -e 'Installing Visual Studio Code...\e[1;32m[DONE]\e[1;0m'
