@@ -2,6 +2,8 @@
 
 Credit for neofetch theme used goes to [Chick2D](https://github.com/Chick2D) and his [neofetch-themes](https://github.com/Chick2D/neofetch-themes) project.
 
+Credit for the note taking app used goes to [Laurent Cozic](https://github.com/laurent22) and their app project [Joplin](https://github.com/laurent22/joplin/).
+
 ### Info
 A script that automates the etire process of setting up the full KDE plasma desktop env with some additional apps and tweaks to make it more usable for my usecase.
 
