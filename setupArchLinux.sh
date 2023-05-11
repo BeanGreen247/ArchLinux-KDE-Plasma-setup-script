@@ -69,6 +69,10 @@ function main {
     echo $pass | sudo -S systemctl enable cpupower
     echo $pass | sudo -S systemctl start cpupower
     echo -e "Installing GUI, apps and other packages...\e[1;32m[DONE]\e[1;0m"
+    
+    echo 'Getting btop configuration...'
+    wget -O /home/$username/.config/btop/btop.conf https://raw.githubusercontent.com/BeanGreen247/ArchLinux-KDE-Plasma-setup-script/main/btop.conf
+    echo 'Getting btop configuration...\e[1;32m[DONE]\e[1;0m'
 
     echo -e "\e[1;31m[Setting up zram...]\e[1;0m\n"
     echo $pass | sudo -S echo '# This config file enables a /dev/zram0 device with the default settings:' | sudo tee /usr/lib/systemd/zram-generator.conf
@@ -113,6 +117,10 @@ function main {
     echo $pass | sudo -S virsh net-autostart default
     echo -e 'Installing virt-manager and other virtual machine stuff...\e[1;32m[DONE]\e[1;0m'
 
+    echo 'Installing Joplin note taking app...'
+    wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
+    echo 'Installing Joplin note taking app...\e[1;32m[DONE]\e[1;0m'
+
     echo -e '\e[1;31m[In about 5 - 30s your input will be required]\e[1;0m\n'
     echo 'Please wait 30s before script continues...'
     echo 'Make sure to have your password for your root account ready, should be the same pass you use to log in...'
@@ -124,6 +132,10 @@ function main {
     makepkg -si
     cd
     echo -e 'Installing yay...\e[1;32m[DONE]\e[1;0m'
+
+    echo 'Installing VNC Viewer...'
+    yay -S realvnc-vnc-viewer
+    echo 'Installing VNC Viewer...\e[1;32m[DONE]\e[1;0m'
 
     echo 'Installing Visual Studio Code...'
     yay -S visual-studio-code-bin
