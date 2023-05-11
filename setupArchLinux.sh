@@ -117,6 +117,10 @@ function main {
     echo $pass | sudo -S virsh net-autostart default
     echo -e 'Installing virt-manager and other virtual machine stuff...\e[1;32m[DONE]\e[1;0m'
 
+    echo 'Installing Joplin note taking app...'
+    wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
+    echo 'Installing Joplin note taking app...\e[1;32m[DONE]\e[1;0m'
+
     echo -e '\e[1;31m[In about 5 - 30s your input will be required]\e[1;0m\n'
     echo 'Please wait 30s before script continues...'
     echo 'Make sure to have your password for your root account ready, should be the same pass you use to log in...'
