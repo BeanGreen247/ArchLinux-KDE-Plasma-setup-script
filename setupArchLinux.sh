@@ -34,7 +34,9 @@ function main {
     echo -n "Enter root password: "
     read -s password
     pass="$password"
-    gpudriver="amd"
+    echo -n "Enter gpu type [intel or amd or nvidia]: "
+    read -s gpu
+    gpudriver="$gpu"
     zramsize=32768 #check Setting up zram
 
     #cannot automate, causes issues
