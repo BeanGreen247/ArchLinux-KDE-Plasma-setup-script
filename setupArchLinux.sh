@@ -29,13 +29,13 @@ function quit {
 function main {
     ### VARS
     echo -n "Enter username: "
-    read -s usernameinput
+    read usernameinput
     username="$usernameinput"
     echo -n "Enter root password: "
     read -s password
     pass="$password"
     echo -n "Enter gpu type [intel or amd or nvidia]: "
-    read -s gpu
+    read gpu
     gpudriver="$gpu"
     zramsize=32768 #check Setting up zram
 
