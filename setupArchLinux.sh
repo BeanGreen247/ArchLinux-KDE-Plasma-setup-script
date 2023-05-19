@@ -28,8 +28,12 @@ function quit {
 
 function main {
     ### VARS
-    pass="test"
-    username="test"
+    echo -n "Enter username: "
+    read -s usernameinput
+    username="$usernameinput"
+    echo -n "Enter root password: "
+    read -s password
+    pass="$password"
     gpudriver="amd"
     zramsize=32768 #check Setting up zram
 
