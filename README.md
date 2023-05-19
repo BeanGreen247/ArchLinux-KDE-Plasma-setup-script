@@ -26,14 +26,21 @@ bash setupArchLinux.sh
 ```
 
 ### Script variables
-Please make sure to adjust for your system before running the script. I have tested in a VM so here is what the variables looked like for me
+~~Please make sure to adjust for your system before running the script. I have tested in a VM so here is what the variables looked like for me~~
 
+No longer needed as now the script will request user input for these vars
 ```bash
 function main {
     ### VARS
-    pass="test"
-    username="test"
-    gpudriver="amd"
+    echo -n "Enter username: "
+    read usernameinput
+    username="$usernameinput"
+    echo -n "Enter root password: "
+    read -s password
+    pass="$password"
+    echo -n "Enter gpu type [intel or amd or nvidia]: "
+    read gpu
+    gpudriver="$gpu"
     zramsize=32768 #check Setting up zram
     ...some more code down there
 ```
