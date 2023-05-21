@@ -26,14 +26,21 @@ bash setupArchLinux.sh
 ```
 
 ### Script variables
-Please make sure to adjust for your system before running the script. I have tested in a VM so here is what the variables looked like for me
+~~Please make sure to adjust for your system before running the script. I have tested in a VM so here is what the variables looked like for me~~
 
+No longer needed as now the script will request user input for these vars
 ```bash
 function main {
     ### VARS
-    pass="test"
-    username="test"
-    gpudriver="amd"
+    echo -n "Enter username: "
+    read usernameinput
+    username="$usernameinput"
+    echo -n "Enter root password: "
+    read -s password
+    pass="$password"
+    echo -n "Enter gpu type [intel or amd or nvidia]: "
+    read gpu
+    gpudriver="$gpu"
     zramsize=32768 #check Setting up zram
     ...some more code down there
 ```
@@ -72,6 +79,10 @@ There are some sections where user input is expected so please make sure to read
 To create an autostart option Open System Settings then go into Startup and Shutdown there select the Autostart settings menu and add a Login script, navigate to the script that was created and add it, next click on properties and make sure it is executable and that everyone can wiev and execute the script, also in the command section make sure to add a . (dot) at the beginning like so
 
 `./home/test/scripts/execute-performance-mode-sh-as-root.sh`
+
+or
+
+`bash /home/test/scripts/execute-performance-mode-sh-as-root.sh`
 
 make sure to change the location of the script based on your setup, but if you used the script then the file should be located in the scripts directory as show in the example above.
 

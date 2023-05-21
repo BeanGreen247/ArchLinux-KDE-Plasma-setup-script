@@ -28,9 +28,15 @@ function quit {
 
 function main {
     ### VARS
-    pass="test"
-    username="test"
-    gpudriver="amd"
+    echo -n "Enter username: "
+    read usernameinput
+    username="$usernameinput"
+    echo -n "Enter root password: "
+    read -s password
+    pass="$password"
+    echo -n "Enter gpu type [intel or amd or nvidia]: "
+    read gpu
+    gpudriver="$gpu"
     zramsize=32768 #check Setting up zram
 
     #cannot automate, causes issues
