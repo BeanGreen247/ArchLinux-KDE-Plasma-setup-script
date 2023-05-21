@@ -80,6 +80,10 @@ To create an autostart option Open System Settings then go into Startup and Shut
 
 `./home/test/scripts/execute-performance-mode-sh-as-root.sh`
 
+or
+
+`bash /home/test/scripts/execute-performance-mode-sh-as-root.sh`
+
 make sure to change the location of the script based on your setup, but if you used the script then the file should be located in the scripts directory as show in the example above.
 
 The script that we added at startup/on login will set the cpu scaling governor to performance once in linux
