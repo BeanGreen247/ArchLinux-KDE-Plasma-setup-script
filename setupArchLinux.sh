@@ -102,11 +102,11 @@ function main {
     elif [ "$gpudriver" == "nvidia" ]; then
         #NVIDIA
         echo -e "\e[1;31m[NVIDIA GPU Drivers Selected]\e[1;0m\n"
-        echo $pass | sudo -S pacman -S --needed --noconfirm nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader
+        echo $pass | sudo -S pacman -S --needed --noconfirm nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader vulkan-mesa-layers lib32-vulkan-mesa-layers
     else
         #INTEL
         echo -e "\e[1;31m[INTEL GPU Drivers Selected]\e[1;0m\n"
-        echo $pass | sudo -S pacman -S --needed lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader
+        echo $pass | sudo -S pacman -S --needed mesa lib32-mesa xf86-video-intel vulkan-intel lib32-vulkan-intel intel-media-driver vulkan-icd-loader lib32-vulkan-icd-loader vulkan-mesa-layers lib32-vulkan-mesa-layers
     fi
     echo -e 'Installing GPU Drivers...\e[1;32m[DONE]\e[1;0m'
 
