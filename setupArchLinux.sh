@@ -50,7 +50,7 @@ function main {
     echo "Scripts Prep..."
     mkdir /home/$username/scripts
     wget -O /home/$username/scripts/fixLineEndings.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/fixLineEndings.sh
-    wget -O /home/$username/scripts/execute-performance-mode-sh-as-root.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/execute-performance-mode-sh-as-root.sh
+    wget -O /home/$username/scripts/execute-performance-mode-sh-as-root.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/execute_as_root.sh
     wget -O /home/$username/scripts/performance-mode.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/performance-mode.sh
     wget -O /home/$username/scripts/replaceString.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/replaceString.sh
     cd /home/$username/scripts
@@ -59,9 +59,9 @@ function main {
     cd
 
     echo -e '\e[1;31m[IMPORTANT MESSAGE, PLEASE READ]\e[1;0m\n'
-    echo 'The following scripts were created, make sure to add them to startup items.'
+    echo 'The following scripts were created, make sure to add execute_as_root.sh to startup items.'
     echo '/home/'$username'/scripts/performance-mode.sh'
-    echo '/home/'$username'/scripts/execute-performance-mode-sh-as-root.sh'
+    echo '/home/'$username'/scripts/execute_as_root.sh'
     echo 'Make sure to ceck if the password is set correctly in the scripts.'
     echo 'Visit https://github.com/BeanGreen247/ArchLinux-KDE-Plasma-setup-script#to-expand-on-the-autostart-portion-of-the-script for more information.'
     echo -e "Scripts Prep...\e[1;32m[DONE]\e[1;0m"
@@ -102,11 +102,11 @@ function main {
     elif [ "$gpudriver" == "nvidia" ]; then
         #NVIDIA
         echo -e "\e[1;31m[NVIDIA GPU Drivers Selected]\e[1;0m\n"
-        echo $pass | sudo -S pacman -S --needed --noconfirm nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader
+        echo $pass | sudo -S pacman -S --needed --noconfirm nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader vulkan-mesa-layers lib32-vulkan-mesa-layers
     else
         #INTEL
         echo -e "\e[1;31m[INTEL GPU Drivers Selected]\e[1;0m\n"
-        echo $pass | sudo -S pacman -S --needed lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader
+        echo $pass | sudo -S pacman -S --needed mesa lib32-mesa xf86-video-intel vulkan-intel lib32-vulkan-intel intel-media-driver vulkan-icd-loader lib32-vulkan-icd-loader vulkan-mesa-layers lib32-vulkan-mesa-layers
     fi
     echo -e 'Installing GPU Drivers...\e[1;32m[DONE]\e[1;0m'
 
