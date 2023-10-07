@@ -50,7 +50,7 @@ function main {
     echo "Scripts Prep..."
     mkdir /home/$username/scripts
     wget -O /home/$username/scripts/fixLineEndings.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/fixLineEndings.sh
-    wget -O /home/$username/scripts/execute-performance-mode-sh-as-root.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/execute-performance-mode-sh-as-root.sh
+    wget -O /home/$username/scripts/execute-performance-mode-sh-as-root.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/execute_as_root.sh
     wget -O /home/$username/scripts/performance-mode.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/performance-mode.sh
     wget -O /home/$username/scripts/replaceString.sh https://raw.githubusercontent.com/BeanGreen247/scripts/main/scripts/replaceString.sh
     cd /home/$username/scripts
