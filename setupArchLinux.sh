@@ -59,9 +59,9 @@ function main {
     cd
 
     echo -e '\e[1;31m[IMPORTANT MESSAGE, PLEASE READ]\e[1;0m\n'
-    echo 'The following scripts were created, make sure to add them to startup items.'
+    echo 'The following scripts were created, make sure to add execute_as_root.sh to startup items.'
     echo '/home/'$username'/scripts/performance-mode.sh'
-    echo '/home/'$username'/scripts/execute-performance-mode-sh-as-root.sh'
+    echo '/home/'$username'/scripts/execute_as_root.sh'
     echo 'Make sure to ceck if the password is set correctly in the scripts.'
     echo 'Visit https://github.com/BeanGreen247/ArchLinux-KDE-Plasma-setup-script#to-expand-on-the-autostart-portion-of-the-script for more information.'
     echo -e "Scripts Prep...\e[1;32m[DONE]\e[1;0m"
