@@ -35,16 +35,17 @@ GRUB_CMDLINE_LINUX="vdso=0 vdso32=0 ignore_rlimit_data preempt=full nohz_full=al
 * intel_pstate=disable -> disables turbo boost
   * some note about lower latency
 
-sudo grub-mkconfig -o /boot/grub/grub.cfg
+`sudo grub-mkconfig -o /boot/grub/grub.cfg`
 
-rate-mirrors --allow-root --protocol https arch | grep -v '^#' | sudo tee /etc/pacman.d/mirrorlist
+`rate-mirrors --allow-root --protocol https arch | grep -v '^#' | sudo tee /etc/pacman.d/mirrorlist`
 
 sudo nano /etc/udev/rules.d/81-wifi-powersave.rules
 ```
 ACTION=="add", SUBSYSTEM=="net", KERNEL=="wl*", RUN+="/usr/bin/iw dev $name set power_save off"
 ```
-###### for kde plasma reference the main script
+#### for kde plasma reference the main script
 
 or
-
+```bash
 sudo pacman -Syy xorg plasma plasma-wayland-session kde-applications plasma-desktop plasma5-integration plasma-pa plasma5support plasma-pass plasma-activities plasma-sdk plasma-activities-stats plasma-systemmonitor plasma-applet-window-buttons plasma-thunderbolt plasma-browser-integration plasmatube plasma-disks plasma-vault plasma-firewall plasma-wayland-protocols plasma-framework5 plasma-welcome plasma-integration plasma-workspace plasma-meta plasma-workspace-wallpapers plasma-nm qt5-wayland qt6-wayland libdecor glfw xdg-desktop-portal wlroots wayland-protocols kwin xorg-xinput xorg-xinit xorg-xwayland xorg-xgamma xorg-xhost xorg-xdm xorg-xdpyinfo xorg-xdriinfo xorg-xedit xorg-xev xorg-xcursorgen xorg-xclipboard xorg-xcmsdb xorg-xconsole xorg-xcalc xorg-xbacklight xorg-xauth xorg-x11perf xorg-util-macros xorg-server xorg-setxkbmap xorg-xkbcomp xorg-xkbevd xorg-fonts-100dpi xorg-fonts-alias-cyrillic xorg-fonts-misc xorg-fonts-75dpi xorg-fonts-alias-misc xorg-fonts-type1 xorg-fonts-alias-100dpi xorg-fonts-cyrillic xorg-fonttosfnt xorg-fonts-alias-75dpi xorg-fonts-encodings xorg-font-util
+```
