@@ -52,5 +52,5 @@ sudo pacman -Syy xorg plasma plasma-wayland-session kde-applications plasma-desk
 
 or
 ```bash
-sudo pacman -Syy xorg plasma plasma-wayland-session kde-applications plasma-desktop plasma5support xdg-desktop-portal wlroots wayland-protocols kwin xorg-xinput xorg-xinit xorg-xwayland xorg-server xorg-setxkbmap xorg-xkbcomp xorg-xkbevd xorg-fonts-100dpi xorg-fonts-alias-cyrillic xorg-fonts-misc xorg-fonts-75dpi xorg-fonts-alias-misc xorg-fonts-type1 xorg-fonts-alias-100dpi xorg-fonts-cyrillic xorg-fonttosfnt xorg-fonts-alias-75dpi xorg-fonts-encodings xorg-font-util
+sudo pacman -Syy xorg plasma xdg-desktop-portal wlroots wayland-protocols
 ```
