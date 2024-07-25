@@ -1,6 +1,6 @@
 some more packages
 
-Please make sure to enable multilib repository before running this script
+Please make sure to enable multilib repository
 
 https://wiki.archlinux.org/title/official_repositories#Enabling_multilib
 ```bash
@@ -48,4 +48,9 @@ ACTION=="add", SUBSYSTEM=="net", KERNEL=="wl*", RUN+="/usr/bin/iw dev $name set 
 or
 ```bash
 sudo pacman -Syy xorg plasma plasma-wayland-session kde-applications plasma-desktop plasma5-integration plasma-pa plasma5support plasma-pass plasma-activities plasma-sdk plasma-activities-stats plasma-systemmonitor plasma-applet-window-buttons plasma-thunderbolt plasma-browser-integration plasmatube plasma-disks plasma-vault plasma-firewall plasma-wayland-protocols plasma-framework5 plasma-welcome plasma-integration plasma-workspace plasma-meta plasma-workspace-wallpapers plasma-nm qt5-wayland qt6-wayland libdecor glfw xdg-desktop-portal wlroots wayland-protocols kwin xorg-xinput xorg-xinit xorg-xwayland xorg-xgamma xorg-xhost xorg-xdm xorg-xdpyinfo xorg-xdriinfo xorg-xedit xorg-xev xorg-xcursorgen xorg-xclipboard xorg-xcmsdb xorg-xconsole xorg-xcalc xorg-xbacklight xorg-xauth xorg-x11perf xorg-util-macros xorg-server xorg-setxkbmap xorg-xkbcomp xorg-xkbevd xorg-fonts-100dpi xorg-fonts-alias-cyrillic xorg-fonts-misc xorg-fonts-75dpi xorg-fonts-alias-misc xorg-fonts-type1 xorg-fonts-alias-100dpi xorg-fonts-cyrillic xorg-fonttosfnt xorg-fonts-alias-75dpi xorg-fonts-encodings xorg-font-util
+```
+
+or
+```bash
+sudo pacman -Syy xorg plasma plasma-wayland-session kde-applications plasma-desktop plasma5support xdg-desktop-portal wlroots wayland-protocols kwin xorg-xinput xorg-xinit xorg-xwayland xorg-server xorg-setxkbmap xorg-xkbcomp xorg-xkbevd xorg-fonts-100dpi xorg-fonts-alias-cyrillic xorg-fonts-misc xorg-fonts-75dpi xorg-fonts-alias-misc xorg-fonts-type1 xorg-fonts-alias-100dpi xorg-fonts-cyrillic xorg-fonttosfnt xorg-fonts-alias-75dpi xorg-fonts-encodings xorg-font-util
 ```
