@@ -52,5 +52,5 @@ sudo pacman -Syy xorg plasma plasma-wayland-session kde-applications plasma-desk
 
 or
 ```bash
-sudo pacman -Syy xorg plasma xdg-desktop-portal wlroots wayland-protocols dolphin kate konsole
+sudo pacman -Syy xorg xdg-desktop-portal wlroots wayland-protocols libinput wayland pkg-config libxcb xwaylandvideobridge xorg-xwayland plasma dolphin kate konsole
 ```
